@@ -1,19 +1,19 @@
 {% set name = "pdf-reports" %}
-{% set version = "0.3.8" %}
+{% set version = "3.4.1-fork" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/Edinburgh-Genome-Foundry/pdf_reports/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 988ca8997557f4ef3b3c3c6d80472997c9818e1dcd9eb2f26351c4640e85aa63
+  url: https://github.com/Edinburgh-Genome-Foundry/pdf_reports/archive/refs/tags/{{ version }}.tar.gz
+  sha256: 3a79ed028979c4978f95fefa41729f28de20e5cf7c68b35d42461a16f1cf2dbe
 
 build:
   number: 0
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  run_exports: 
+  run_exports:
     - {{ pin_subpackage('pdf-reports', max_pin="x.x") }}
 
 requirements:
@@ -29,10 +29,10 @@ requirements:
     - beautifulsoup4
     - pandas
     - markdown
-    - backports.functools_lru_cache 
+    - backports.functools_lru_cache
 
 test:
-  source_files: 
+  source_files:
     - tests/
   imports:
     - pdf_reports
@@ -40,7 +40,7 @@ test:
     - python {{ python_min }}
     - libsass
     - matplotlib-base
-    - pypdf 
+    - pypdf
     - pytest
     - pytest-cov
     - pytest-mock
